@@ -12,8 +12,11 @@ package Reika.UsefulTNT;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Exception.RegistrationException;
+import Reika.DragonAPI.Instantiable.ModLogger;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -22,6 +25,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod( modid = "UsefulTNT", name="Useful TNT", version="beta", certificateFingerprint = "@GET_FINGERPRINT@", dependencies="after:DragonAPI")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -29,6 +34,10 @@ public class UsefulTNT extends DragonAPIMod {
 
 	//@Instance
 	public static UsefulTNT instance = new UsefulTNT();
+
+	public static Item tntItem = new ItemTNTMiner(27600).setUnlocalizedName("tntminer");
+
+	public static ModLogger logger;
 
 	@Override
 	@PreInit
@@ -39,7 +48,13 @@ public class UsefulTNT extends DragonAPIMod {
 	@Override
 	@Init
 	public void load(FMLInitializationEvent event) {
+		logger = new ModLogger(instance, true, false, false);
+		LanguageRegistry.addName(tntItem, "TNT Mining Item");
+		this.addRecipes();
+	}
 
+	public static void addRecipes() {
+		GameRegistry.addShapedRecipe(new ItemStack(tntItem.itemID, 1, 0), "IDI", " E ", " I ", 'I', Item.ingotIron, 'D', Item.diamond, 'E', Item.enderPearl);
 	}
 
 	@Override
