@@ -15,6 +15,7 @@ import java.net.URL;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import Reika.DragonAPI.Base.DragonAPIMod;
+import Reika.DragonAPI.Exception.IDConflictException;
 import Reika.DragonAPI.Exception.RegistrationException;
 import Reika.DragonAPI.Instantiable.ModLogger;
 import cpw.mods.fml.common.Mod;
@@ -35,21 +36,25 @@ public class UsefulTNT extends DragonAPIMod {
 	//@Instance
 	public static UsefulTNT instance = new UsefulTNT();
 
-	public static Item tntItem = new ItemTNTMiner(27600).setUnlocalizedName("tntminer");
+	public static final int itemID = 27600;
+
+	public static Item tntItem;
 
 	public static ModLogger logger;
 
 	@Override
 	@PreInit
 	public void preload(FMLPreInitializationEvent evt) {
-
+		if (Item.itemsList[256+itemID] != null)
+			throw new IDConflictException(UsefulTNT.instance, itemID+" item slot already occupied by "+Item.itemsList[256+itemID]+" while adding "+this);
+		tntItem = new ItemTNTMiner(itemID).setUnlocalizedName("tntminer");
+		logger = new ModLogger(instance, true, false, false);
+		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 	}
 
 	@Override
 	@Init
 	public void load(FMLInitializationEvent event) {
-		logger = new ModLogger(instance, true, false, false);
-		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 		this.addRecipes();
 	}
 
