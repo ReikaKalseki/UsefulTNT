@@ -9,14 +9,13 @@
  ******************************************************************************/
 package Reika.UsefulTNT;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import Reika.DragonAPI.DragonAPICore;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Exception.IDConflictException;
-import Reika.DragonAPI.Exception.RegistrationException;
 import Reika.DragonAPI.Instantiable.ModLogger;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -80,12 +79,7 @@ public class UsefulTNT extends DragonAPIMod {
 
 	@Override
 	public URL getDocumentationSite() {
-		try {
-			return new URL("http://www.minecraftforum.net/topic/1969694-");
-		}
-		catch (MalformedURLException e) {
-			throw new RegistrationException(instance, "The mod provided a malformed URL for its documentation site!");
-		}
+		return DragonAPICore.getReikaForumPage(instance);
 	}
 
 	@Override
