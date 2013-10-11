@@ -102,4 +102,9 @@ public class UsefulTNT extends DragonAPIMod {
 		return null;
 	}
 
+	@Override
+	public ModLogger getModLogger() {
+		return logger;
+	}
+
 }
