@@ -18,9 +18,7 @@ import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Exception.IDConflictException;
 import Reika.DragonAPI.Instantiable.ModLogger;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -42,7 +40,7 @@ public class UsefulTNT extends DragonAPIMod {
 	public static ModLogger logger;
 
 	@Override
-	@PreInit
+	@EventHandler
 	public void preload(FMLPreInitializationEvent evt) {
 		if (Item.itemsList[256+itemID] != null)
 			throw new IDConflictException(UsefulTNT.instance, itemID+" item slot already occupied by "+Item.itemsList[256+itemID]+" while adding "+this);
@@ -52,7 +50,7 @@ public class UsefulTNT extends DragonAPIMod {
 	}
 
 	@Override
-	@Init
+	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		this.addRecipes();
 	}
@@ -62,7 +60,7 @@ public class UsefulTNT extends DragonAPIMod {
 	}
 
 	@Override
-	@PostInit
+	@EventHandler
 	public void postload(FMLPostInitializationEvent evt) {
 
 	}
