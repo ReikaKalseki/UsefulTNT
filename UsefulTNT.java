@@ -17,8 +17,10 @@ import Reika.DragonAPI.DragonAPICore;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Exception.IDConflictException;
 import Reika.DragonAPI.Instantiable.ModLogger;
+import Reika.DragonAPI.Libraries.ReikaRegistryHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -30,7 +32,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class UsefulTNT extends DragonAPIMod {
 
-	//@Instance
+	@Instance("UsefulTNT")
 	public static UsefulTNT instance = new UsefulTNT();
 
 	public static final int itemID = 27600;
@@ -47,6 +49,9 @@ public class UsefulTNT extends DragonAPIMod {
 		tntItem = new ItemTNTMiner(itemID).setUnlocalizedName("tntminer");
 		logger = new ModLogger(instance, true, false, false);
 		LanguageRegistry.addName(tntItem, "TNT Mining Item");
+
+		ReikaRegistryHelper.setupModData(instance, evt);
+		ReikaRegistryHelper.setupVersionChecking(evt);
 	}
 
 	@Override
