@@ -33,7 +33,7 @@ public class ItemTNTMiner extends Item {
 		int id = world.getBlockId(x, y, z);
 		if (id == Block.tnt.blockID) {
 			world.setBlock(x, y, z, 0);
-			MiningExplosion exp = new MiningExplosion(world, null, x+0.5, y+0.5, z+0.5, 4);
+			MiningExplosion exp = new MiningExplosion(world, null, x+0.5, y+0.5, z+0.5, 4, !ep.isSneaking());
 			exp.doExplosionA();
 			exp.doExplosionB(true);
 			return true;
