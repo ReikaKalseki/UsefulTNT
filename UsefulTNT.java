@@ -17,6 +17,7 @@ import Reika.DragonAPI.DragonAPICore;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Exception.IDConflictException;
 import Reika.DragonAPI.Instantiable.IO.ModLogger;
+import Reika.DragonAPI.Instantiable.IO.SimpleConfig;
 import Reika.DragonAPI.Libraries.ReikaRegistryHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -35,15 +36,20 @@ public class UsefulTNT extends DragonAPIMod {
 	@Instance("UsefulTNT")
 	public static UsefulTNT instance = new UsefulTNT();
 
-	public static final int itemID = 27600;
-
 	public static Item tntItem;
 
 	public static ModLogger logger;
 
+	public static final SimpleConfig config = new SimpleConfig(instance);
+
 	@Override
 	@EventHandler
 	public void preload(FMLPreInitializationEvent evt) {
+		config.loadSubfolderedConfigFile(evt);
+		config.loadDataFromFile(evt);
+		int itemID = config.getInteger("Item IDs", "TNT Miner Item", 27600);
+		config.finishReading();
+
 		if (Item.itemsList[256+itemID] != null)
 			throw new IDConflictException(UsefulTNT.instance, itemID+" item slot already occupied by "+Item.itemsList[256+itemID]+" while adding "+this);
 		tntItem = new ItemTNTMiner(itemID).setUnlocalizedName("tntminer");
