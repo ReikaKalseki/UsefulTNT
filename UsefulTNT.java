@@ -14,11 +14,11 @@ import java.net.URL;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import Reika.DragonAPI.DragonAPICore;
+import Reika.DragonAPI.Auxiliary.CommandableUpdateChecker;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Exception.IDConflictException;
 import Reika.DragonAPI.Instantiable.IO.ModLogger;
 import Reika.DragonAPI.Instantiable.IO.SimpleConfig;
-import Reika.DragonAPI.Libraries.ReikaRegistryHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -56,8 +56,7 @@ public class UsefulTNT extends DragonAPIMod {
 		logger = new ModLogger(instance, true, false, false);
 		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 
-		ReikaRegistryHelper.setupModData(instance, evt);
-		ReikaRegistryHelper.setupVersionChecking(evt);
+		this.basicSetup(evt);
 	}
 
 	@Override
@@ -88,27 +87,17 @@ public class UsefulTNT extends DragonAPIMod {
 
 	@Override
 	public URL getDocumentationSite() {
-		return DragonAPICore.getReikaForumPage(instance);
+		return DragonAPICore.getReikaForumPage();
 	}
 
 	@Override
-	public boolean hasWiki() {
-		return false;
-	}
-
-	@Override
-	public URL getWiki() {
+	public String getWiki() {
 		return null;
 	}
 
 	@Override
-	public boolean hasVersion() {
-		return false;
-	}
-
-	@Override
-	public String getVersionName() {
-		return null;
+	public String getUpdateCheckURL() {
+		return CommandableUpdateChecker.reikaURL;
 	}
 
 	@Override
