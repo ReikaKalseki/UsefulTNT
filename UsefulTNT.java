@@ -53,7 +53,7 @@ public class UsefulTNT extends DragonAPIMod {
 		if (Item.itemsList[256+itemID] != null)
 			throw new IDConflictException(UsefulTNT.instance, itemID+" item slot already occupied by "+Item.itemsList[256+itemID]+" while adding "+this);
 		tntItem = new ItemTNTMiner(itemID).setUnlocalizedName("tntminer");
-		logger = new ModLogger(instance, true, false, false);
+		logger = new ModLogger(instance, false);
 		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 
 		this.basicSetup(evt);
