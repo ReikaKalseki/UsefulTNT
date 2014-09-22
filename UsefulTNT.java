@@ -9,16 +9,15 @@
  ******************************************************************************/
 package Reika.UsefulTNT;
 
-import Reika.DragonAPI.DragonAPICore;
-import Reika.DragonAPI.Auxiliary.CommandableUpdateChecker;
-import Reika.DragonAPI.Base.DragonAPIMod;
-import Reika.DragonAPI.Instantiable.IO.ModLogger;
-
 import java.net.URL;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import Reika.DragonAPI.DragonAPICore;
+import Reika.DragonAPI.Auxiliary.CommandableUpdateChecker;
+import Reika.DragonAPI.Base.DragonAPIMod;
+import Reika.DragonAPI.Instantiable.IO.ModLogger;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -44,14 +43,8 @@ public class UsefulTNT extends DragonAPIMod {
 	@Override
 	@EventHandler
 	public void preload(FMLPreInitializationEvent evt) {
-		//config.loadSubfolderedConfigFile(evt);
-		//config.loadDataFromFile(evt);
-		//int itemID = config.getInteger("Item IDs", "TNT Miner Item", 27600);
-		//config.finishReading();
-
-		//if (Items.itemsList[256+itemID] != null)
-		//	throw new IDConflictException(UsefulTNT.instance, itemID+" item slot already occupied by "+Items.itemsList[256+itemID]+" while adding "+this);
 		tntItem = new ItemTNTMiner().setUnlocalizedName("tntminer");
+		GameRegistry.registerItem(tntItem, "tntminer");
 		logger = new ModLogger(instance, false);
 		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 
@@ -61,11 +54,8 @@ public class UsefulTNT extends DragonAPIMod {
 	@Override
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
-		this.addRecipes();
-	}
-
-	public static void addRecipes() {
-		GameRegistry.addShapedRecipe(new ItemStack(tntItem, 1, 0), "IDI", " E ", " I ", 'I', Items.iron_ingot, 'D', Items.diamond, 'E', Items.ender_pearl);
+		GameRegistry.addShapedRecipe(new ItemStack(tntItem, 1, 0),
+				"IDI", " E ", " I ", 'I', Items.iron_ingot, 'D', Items.diamond, 'E', Items.ender_pearl);
 	}
 
 	@Override

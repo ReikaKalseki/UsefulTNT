@@ -9,8 +9,6 @@
  ******************************************************************************/
 package Reika.UsefulTNT;
 
-import Reika.DragonAPI.Instantiable.MiningExplosion;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import Reika.DragonAPI.Instantiable.MiningExplosion;
 
 public class ItemTNTMiner extends Item {
 
