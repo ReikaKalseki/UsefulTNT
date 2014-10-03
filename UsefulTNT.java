@@ -43,6 +43,7 @@ public class UsefulTNT extends DragonAPIMod {
 	@Override
 	@EventHandler
 	public void preload(FMLPreInitializationEvent evt) {
+		this.verifyVersions();
 		tntItem = new ItemTNTMiner().setUnlocalizedName("tntminer");
 		GameRegistry.registerItem(tntItem, "tntminer");
 		logger = new ModLogger(instance, false);
