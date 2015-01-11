@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import Reika.DragonAPI.DragonAPICore;
 import Reika.DragonAPI.Auxiliary.Trackers.CommandableUpdateChecker;
 import Reika.DragonAPI.Base.DragonAPIMod;
+import Reika.DragonAPI.Base.DragonAPIMod.LoadProfiler.LoadPhase;
 import Reika.DragonAPI.Instantiable.IO.ModLogger;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -43,6 +44,7 @@ public class UsefulTNT extends DragonAPIMod {
 	@Override
 	@EventHandler
 	public void preload(FMLPreInitializationEvent evt) {
+		this.startTiming(LoadPhase.PRELOAD);
 		this.verifyVersions();
 		tntItem = new ItemTNTMiner().setUnlocalizedName("tntminer");
 		GameRegistry.registerItem(tntItem, "tntminer");
@@ -50,19 +52,23 @@ public class UsefulTNT extends DragonAPIMod {
 		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 
 		this.basicSetup(evt);
+		this.finishTiming();
 	}
 
 	@Override
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
+		this.startTiming(LoadPhase.LOAD);
 		GameRegistry.addShapedRecipe(new ItemStack(tntItem, 1, 0),
 				"IDI", " E ", " I ", 'I', Items.iron_ingot, 'D', Items.diamond, 'E', Items.ender_pearl);
+		this.finishTiming();
 	}
 
 	@Override
 	@EventHandler
 	public void postload(FMLPostInitializationEvent evt) {
-
+		this.startTiming(LoadPhase.POSTLOAD);
+		this.finishTiming();
 	}
 
 	@Override
