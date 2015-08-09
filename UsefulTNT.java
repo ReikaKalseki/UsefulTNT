@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import Reika.DragonAPI.DragonAPICore;
+import Reika.DragonAPI.DragonOptions;
 import Reika.DragonAPI.Auxiliary.Trackers.CommandableUpdateChecker;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Base.DragonAPIMod.LoadProfiler.LoadPhase;
@@ -49,6 +50,8 @@ public class UsefulTNT extends DragonAPIMod {
 		tntItem = new ItemTNTMiner().setUnlocalizedName("tntminer");
 		GameRegistry.registerItem(tntItem, "tntminer");
 		logger = new ModLogger(instance, false);
+		if (DragonOptions.FILELOG.getState())
+			logger.setOutput("**_Loading_Log.log");
 		LanguageRegistry.addName(tntItem, "TNT Mining Item");
 
 		this.basicSetup(evt);
