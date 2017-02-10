@@ -9,6 +9,7 @@
  ******************************************************************************/
 package Reika.UsefulTNT;
 
+import java.io.File;
 import java.net.URL;
 
 import net.minecraft.init.Items;
@@ -102,6 +103,11 @@ public class UsefulTNT extends DragonAPIMod {
 	@Override
 	public ModLogger getModLogger() {
 		return logger;
+	}
+
+	@Override
+	public File getConfigFolder() {
+		return null;//config.getConfigFolder();
 	}
 
 }
