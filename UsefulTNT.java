@@ -15,12 +15,14 @@ import java.net.URL;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 import Reika.DragonAPI.DragonAPICore;
 import Reika.DragonAPI.DragonOptions;
 import Reika.DragonAPI.Auxiliary.Trackers.CommandableUpdateChecker;
 import Reika.DragonAPI.Base.DragonAPIMod;
 import Reika.DragonAPI.Base.DragonAPIMod.LoadProfiler.LoadPhase;
 import Reika.DragonAPI.Instantiable.IO.ModLogger;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;

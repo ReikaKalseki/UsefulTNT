@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import Reika.DragonAPI.Instantiable.MiningExplosion;
 
 public class ItemTNTMiner extends Item {
